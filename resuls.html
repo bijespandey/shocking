@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Results</h1>
+    <div id="results">
+        <!-- The submitted answers will be displayed here -->
+    </div>
+
+    <script>
+        // Fetch the submitted answers from localStorage and display them
+        function displayResults() {
+            const submittedAnswers = JSON.parse(localStorage.getItem('quizAnswers'));
+            const resultsDiv = document.getElementById('results');
+            if (submittedAnswers) {
+                const questions = ['1. How is the end play of mainshaft measured?', '2. Who is "Subarn"?', '3. Who is "Preety"?'];
+                const options = {
+                    q1: { a: 'Feeler gauge', b: 'Depth cause', c: 'Dial gauge' },
+                    q2: { boy: 'Boy', girl: 'Girl', unknown: 'Unknown' },
+                    q3: { me: 'Me', you: 'You', both: 'Both' },
+                };
+                let resultHTML = '<ul>';
+
+                for (const [question, answer] of Object.entries(submittedAnswers)) {
+                    const optionText = options[question][answer];
+                    resultHTML += `<li>${questions[Number(question) - 1]} - ${optionText}</li>`;
+                }
+
+                resultHTML += '</ul>';
+                resultsDiv.innerHTML = resultHTML;
+            } else {
+                resultsDiv.innerHTML = '<p>No answers submitted yet.</p>';
+            }
+        }
+
+        // Display the results when the page loads
+        displayResults();
+
+        // Update and display the results on every change to the form inputs
+        window.addEventListener('storage', function() {
+            displayResults();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <form id="quizForm">
+        <div class="question">
+            <p>1. How is the end play of mainshaft measured?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q1" value="a">
+                    Feeler gauge
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="b">
+                    Depth cause
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="c">
+                    Dial gauge
+                </label>
+            </div>
+        </div>
+        <div class="question">
+            <p>2. Who is "Subarn"?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q2" value="boy">
+                    Boy
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="girl">
+                    Girl
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="unknown">
+                    Unknown
+                </label>
+            </div>
+        </div>
+        <div class="question">
+            <p>3. Who is "Preety"?</p>
+            <div class="options">
+                <label>
+                    <input type="radio" name="q3" value="me">
+                    Me
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="you">
+                    You
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="both">
+                    Both
+                </label>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const answers = {
+                q1: formData.get('q1'),
+                q2: formData.get('q2'),
+                q3: formData.get('q3'),
+            };
+            console.log(answers); // You can use these answers for further processing (e.g., display results, store in a database, etc.)
+        });
+    </script>
+</body>
+<form id="quizForm">
+    <!-- ... (previous form code) ... -->
+    <button type="submit">Submit</button>
+</form>
+
+<div id="resultMessage" style="display: none;">
+    <p>Your answer has been submitted!</p>
+</div>
+
+<script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const answers = {
+            q1: formData.get('q1'),
+            q2: formData.get('q2'),
+            q3: formData.get('q3'),
+        };
+        console.log(answers); // You can use these answers for further processing (e.g., display results, store in a database, etc.)
+
+        // Show the result message
+        document.getElementById('resultMessage').style.display = 'block';
+    });
+</script>
+
+<body>
+    <h1>Quiz</h1>
+    <form id="quizForm">
+        <!-- ... (previous form code) ... -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="resultMessage" style="display: none;">
+        <p>Your answer has been submitted!</p>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const answers = {
+                q1: formData.get('q1'),
+                q2: formData.get('q2'),
+                q3: formData.get('q3'),
+            };
+            console.log(answers); // You can use these answers for further processing (e.g., display results, store in a database, etc.)
+
+            // Save the submitted answers to localStorage
+            localStorage.setItem('quizAnswers', JSON.stringify(answers));
+
+            // Show the result message
+            document.getElementById('resultMessage').style.display = 'block';
+
+            // Redirect to the results page after 2 seconds (optional)
+            setTimeout(function() {
+                window.location.href = 'results.html';
+            }, 2000);
+        });
+    </script>
+</body>
+<!-- ... (previous HTML code) ... -->
+<body>
+    <h1>Quiz</h1>
+    <form id="quizForm">
+        <!-- ... (previous form code) ... -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="resultMessage" style="display: none;">
+        <p>Your answer has been submitted!</p>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('quizForm');
+
+        function updateAnswers() {
+            const formData = new FormData(quizForm);
+            const answers = {
+                q1: formData.get('q1'),
+                q2: formData.get('q2'),
+                q3: formData.get('q3'),
+            };
+            console.log(answers); // You can use these answers for further processing (e.g., display results, store in a database, etc.)
+            localStorage.setItem('quizAnswers', JSON.stringify(answers));
+        }
+
+        quizForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateAnswers();
+            document.getElementById('resultMessage').style.display = 'block';
+            setTimeout(function() {
+                window.location.href = 'results.html';
+            }, 2000);
+        });
+
+        quizForm.addEventListener('change', function() {
+            updateAnswers();
+        });
+    </script>
+</body>
+<!-- ... (rest of the HTML code) ... -->
+
+</html>
